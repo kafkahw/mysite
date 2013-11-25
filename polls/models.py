@@ -3,8 +3,8 @@ from django.utils import timezone
 import datetime
 
 # Create your models here.
-class Poll(models.Model):
-    question = models.CharField(max_length=200)
+class Question(models.Model):
+    question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
     
     def was_published_recently(self):
@@ -14,13 +14,13 @@ class Poll(models.Model):
     was_published_recently.short_description = 'Published recently?'
 
     def __unicode__(self):
-    	return self.question
+    	return self.question_text
 
 
 class Choice(models.Model):
-    poll = models.ForeignKey(Poll)
-    choice = models.CharField(max_length=200)
-    votes = models.IntegerField()
+    question = models.ForeignKey(Question)
+    choice_text = models.CharField(max_length=200)
+    votes = models.IntegerField(default=0)
     
     def __unicode__(self):
-    	return self.choice
+    	return self.choice_text
