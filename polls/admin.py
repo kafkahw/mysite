@@ -14,7 +14,7 @@ class QuestionAdmin(admin.ModelAdmin):
     list_display = ('question_text', 'pub_date', 'was_published_recently')
     list_filter = ['pub_date']
     search_fields = ['question_text']
-    date_hierarchy = 'pub_date'
+    # date_hierarchy = 'pub_date' # doesn't support in Django 1.6
 
 
 admin.site.register(Question, QuestionAdmin)
